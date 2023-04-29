@@ -235,6 +235,10 @@ function JupyterCell(pcell::PlutoMarkdownCell)
 end
 
 function pluto2jupyter(file)
+    if endswith(file,".ipynb")
+        print("It is already a jupyter book")
+        return
+    end
     # parser: pluto notebook has orderidlist, map(order_id => codesnippets) ::Plutocells
     plutoraw = readchomp(file)
     plutocelllist = string.(split(plutoraw, _cell_id_delimiter))
