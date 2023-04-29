@@ -142,6 +142,11 @@ function has_multiple_expressions(codecell::JupyterCodeCell)
 end
 
 function jupyter2pluto(jupyter_file)
+    if endswith(jupyter_file,".jl")
+        println("This is already a Pluto notebook")
+        return
+    end
+
     jupyter_cells = try
         content = JSON.parsefile(jupyter_file)
         content["cells"]
